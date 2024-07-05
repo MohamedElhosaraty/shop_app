@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app/cache/cache_helper.dart';
+import 'package:shop_app/modules/login.dart';
 import 'package:shop_app/modules/onboarding.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await CacheHelper().init();
+  bool onBoarding = CacheHelper.getData(key: "onBoarding") ?? false ;
+
+  runApp( MyApp(onBoarding: onBoarding,));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
 
-  // This widget is the root of your application.
+  final bool onBoarding;
+   const MyApp({super.key, required this.onBoarding});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,7 +26,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueAccent),
         useMaterial3: true,
       ),
-      home: const OnBoardingScreen(),
+      home: onBoarding ? LoginScreen() : const OnBoardingScreen(),
     );
   }
 }

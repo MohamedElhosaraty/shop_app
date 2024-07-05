@@ -14,7 +14,7 @@ class CacheHelper {
 
 //! this method to put data in local database using key
 
-  Future<bool> saveData({required String key, required dynamic value}) async {
+   static  Future<bool> saveData({required String key, required dynamic value}) async {
     if (value is bool) {
       return await sharedPreferences.setBool(key, value);
     }
@@ -32,7 +32,7 @@ class CacheHelper {
 
 //! this method to get data already saved in local database
 
-  dynamic getData({required String key}) {
+  static dynamic getData({required String key}) {
     return sharedPreferences.get(key);
   }
 
