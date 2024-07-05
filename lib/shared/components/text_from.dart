@@ -1,5 +1,4 @@
 import 'dart:core';
-import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class TextForm extends StatelessWidget {
@@ -47,7 +46,7 @@ class TextForm extends StatelessWidget {
   Widget? suffixIcon;
 
   Widget? prefixIcon;
-  double radius = 20;
+  double radius = 12;
   TextStyle? labelStyle;
   bool obscureText = false;
   Function()? onTap;

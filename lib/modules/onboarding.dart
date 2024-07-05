@@ -40,7 +40,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       appBar: AppBar(
         actions: [
           TextButton(onPressed: (){
-            navigateAndFinish(context, const LoginScreen());
+            navigateAndFinish(context,  LoginScreen());
           }, child: TextBest(text: 'SKIP',color: Colors.orange,))
         ],
       ),
@@ -93,7 +93,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         curve: Curves.fastLinearToSlowEaseIn
                     );
                   }else{
-                    navigateAndFinish(context, const LoginScreen());
+                    navigateAndFinish(context, LoginScreen());
                   }
 
                 },
