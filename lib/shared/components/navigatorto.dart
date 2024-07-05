@@ -20,7 +20,7 @@ void showToast ({required String message , required ToastStates state}) {
       toastLength: Toast.LENGTH_LONG,
       gravity: ToastGravity.BOTTOM,
       timeInSecForIosWeb: 5,
-      backgroundColor: Colors.red,
+      backgroundColor: chooseColor(state),
       textColor: Colors.white,
       fontSize: 20.0
   );

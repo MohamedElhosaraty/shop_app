@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app/cache/cache_helper.dart';
 import 'package:shop_app/model.dart';
 import 'package:shop_app/modules/login.dart';
 import 'package:shop_app/shared/components/navigatorto.dart';
@@ -13,6 +14,7 @@ class OnBoardingScreen extends StatefulWidget {
 }
 
 class _OnBoardingScreenState extends State<OnBoardingScreen> {
+
   List<BoardingModel> boarding = [
     BoardingModel(
       image: 'assets/images/onboarding.jpg',
@@ -34,14 +36,20 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   final pageController = PageController();
   bool isLast = false ;
 
+  void  onTap () {
+    CacheHelper.saveData(key: "onBoarding", value: true).then((value) {
+      if(value){
+      navigateAndFinish(context,  LoginScreen());}
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          TextButton(onPressed: (){
-            navigateAndFinish(context,  LoginScreen());
-          }, child: TextBest(text: 'SKIP',color: Colors.orange,))
+          TextButton(onPressed: onTap
+          , child: TextBest(text: 'SKIP',color: Colors.orange,))
         ],
       ),
       body: Padding(
@@ -93,7 +101,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         curve: Curves.fastLinearToSlowEaseIn
                     );
                   }else{
-                    navigateAndFinish(context, LoginScreen());
+                    onTap();
                   }
 
                 },
