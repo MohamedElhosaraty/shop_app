@@ -1,6 +1,6 @@
 class EndPoints {
-  static String baseUrl ="https://lucky-clear-anemone.ngrok-free.app/";
-  static String signIn = 'login';
+  static String baseUrl ="https://student.valuxapps.com/api/";
+  static String login = 'login';
   static String signUp = 'register';
   static String profile = 'profile';
 
