@@ -1,6 +1,5 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TextBest extends StatelessWidget {
   TextBest(
@@ -16,7 +15,7 @@ class TextBest extends StatelessWidget {
   TextAlign? textAlign;
   String? fontFamily;
 
-  double fontSize = 20;
+  double fontSize = 20.sp;
   FontWeight fontWeight = FontWeight.bold;
   Color color = Colors.black;
 
