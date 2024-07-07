@@ -1,43 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/cache/cache_helper.dart';
-import 'package:shop_app/core/api/end_Points.dart';
-import 'package:shop_app/modules/login.dart';
-import 'package:shop_app/modules/onboarding.dart';
-import 'package:shop_app/shared/components/navigatorto.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop_app/cubit/bottomNav/bottom_cubit.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Column(
-        children: [
-          InkWell(
-              onTap: (){
-                CacheHelper.removeData(key: ApiKey.token).then((value) {
-                  if(value){
-                    navigateAndFinish(context, LoginScreen());
-                  }
-                });
+    return BlocConsumer<BottomCubit, BottomState>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        final cubit = BottomCubit.get(context);
+        return Scaffold(
+          appBar: AppBar(),
+          body: cubit.bottomNav[cubit.currentIndex],
+          bottomNavigationBar: BottomNavigationBar(
+              backgroundColor: Colors.white,
+              showUnselectedLabels: false,
+              onTap: (index) {
+                cubit.changeBottom(index);
               },
-              child:const Text("SignOut",style: TextStyle(
-                fontSize: 30,color: Colors.blueAccent
-              ),)),
-          InkWell(
-              onTap: (){
-                CacheHelper.removeData(key: "onBoarding").then((value) {
-                  if(value){
-                    navigateAndFinish(context, OnBoardingScreen());
-                  }
-                });
-              },
-              child:const Text("SignOutBy OnBoarding",style: TextStyle(
-                  fontSize: 30,color: Colors.blueAccent
-              ),))
-        ],
-      ),
+              type: BottomNavigationBarType.fixed,
+              currentIndex: cubit.currentIndex,
+              items: const [
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.home), label: 'Home'),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.apps), label: 'Categories'),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.favorite), label: 'Favorite'),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.settings), label: 'Setting')
+              ]),
+        );
+      },
     );
   }
 }
