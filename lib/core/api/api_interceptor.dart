@@ -8,6 +8,7 @@ class ApiInterceptor extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     options.headers[ApiKey.token] = CacheHelper.getData(key: ApiKey.token);
+    options.headers["lang"] = "en";
 
     super.onRequest(options, handler);
   }

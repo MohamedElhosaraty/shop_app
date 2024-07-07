@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shop_app/core/api/dio_consumer.dart';
 import 'package:shop_app/cubit/login/login_cubit.dart';
 import 'package:shop_app/layout/home.dart';
@@ -49,7 +49,7 @@ class LoginScreen extends StatelessWidget {
                       children: [
                         TextBest(
                           text: "LOGIN",
-                          fontSize: 30,
+                          fontSize: 30.sp,
                         ),
                         SizedBox(
                           height: size.height * .01,
@@ -72,13 +72,13 @@ class LoginScreen extends StatelessWidget {
                             return null;
                           },
                           hintText: 'Email Address',
-                          prefixIcon: const Icon(
+                          prefixIcon:  Icon(
                             Icons.email_outlined,
                             color: Colors.grey,
-                            size: 30,
+                            size: 30.sp,
                           ),
-                          hintStyle: const TextStyle(
-                            fontSize: 20,
+                          hintStyle:  TextStyle(
+                            fontSize: 20.sp,
                           ),
                         ),
                         SizedBox(
@@ -94,10 +94,10 @@ class LoginScreen extends StatelessWidget {
                             return null;
                           },
                           hintText: 'Password',
-                          prefixIcon: const Icon(
+                          prefixIcon:  Icon(
                             Icons.lock,
                             color: Colors.grey,
-                            size: 30,
+                            size: 30.sp,
                           ),
                           hintStyle: const TextStyle(
                             fontSize: 20,
@@ -114,7 +114,7 @@ class LoginScreen extends StatelessWidget {
                         state is LoginLoadedState ? const Center(child: CircularProgressIndicator(),) :
                         ContainerButton(
                             text: "LOGIN",
-                            style: const TextStyle(fontSize: 20, color: Colors
+                            style: TextStyle(fontSize: 20.sp, color: Colors
                                 .white),
                             onPressed: () {
                               if (_formState.currentState!.validate()) {
