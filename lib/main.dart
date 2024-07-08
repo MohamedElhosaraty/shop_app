@@ -7,6 +7,8 @@ import 'package:shop_app/core/api/dio_consumer.dart';
 import 'package:shop_app/core/api/end_Points.dart';
 import 'package:shop_app/cubit/bottomNav/bottom_cubit.dart';
 import 'package:shop_app/cubit/categories/categories_cubit.dart';
+import 'package:shop_app/cubit/favorite/favorite_cubit.dart';
+import 'package:shop_app/cubit/product/products_cubit.dart';
 import 'package:shop_app/layout/home.dart';
 import 'package:shop_app/modules/login.dart';
 import 'package:shop_app/modules/onboarding.dart';
@@ -49,8 +51,15 @@ class MyApp extends StatelessWidget {
             providers: [
               BlocProvider(
                 create: (context) =>
-                BottomCubit(DioConsumer(dio: Dio()))
-                  ..getHomeData(),
+                BottomCubit(DioConsumer(dio: Dio())),
+              ),
+              BlocProvider(
+                create: (context) =>
+                    ProductsCubit(DioConsumer(dio: Dio()))..getHomeData(),
+              ),
+              BlocProvider(
+                create: (context) =>
+                FavoriteCubit(DioConsumer(dio: Dio())),
               ),
               BlocProvider(
                 create: (context) => CategoriesCubit(DioConsumer(dio: Dio()))
