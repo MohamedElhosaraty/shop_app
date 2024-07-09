@@ -27,7 +27,7 @@ class BottomCubit extends Cubit<BottomState> {
   List<Widget> bottomNav =  [
     const ProductsScreen(),
     CategoriesScreen(),
-    const FavouriteScreen(),
+    FavouriteScreen(),
     const SettingScreen()
   ];
 
