@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shop_app/core/api/dio_consumer.dart';
-import 'package:shop_app/cubit/login/login_cubit.dart';
 import 'package:shop_app/cubit/register/register_cubit.dart';
+import 'package:shop_app/layout/home.dart';
 import 'package:shop_app/modules/login.dart';
 import 'package:shop_app/shared/components/containerbutton.dart';
 import 'package:shop_app/shared/components/navigatorto.dart';
@@ -31,7 +31,7 @@ class RegisterScreen extends StatelessWidget {
         listener: (context, state) {
           if(state is RegisterSuccessState){
             showToast(message: state.registerModel.message,state: ToastStates.SUCCESS);
-            navigateAndFinish(context, LoginScreen());
+            navigateAndFinish(context, const HomeScreen());
           }
           if(state is RegisterFailureState){
             showToast(message: state.errorMessage,state: ToastStates.ERROR);
