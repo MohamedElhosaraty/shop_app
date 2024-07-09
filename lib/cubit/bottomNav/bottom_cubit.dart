@@ -28,7 +28,7 @@ class BottomCubit extends Cubit<BottomState> {
     const ProductsScreen(),
     CategoriesScreen(),
     FavouriteScreen(),
-    const SettingScreen()
+     SettingScreen()
   ];
 
   void changeBottom(int index) {
