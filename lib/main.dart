@@ -10,6 +10,7 @@ import 'package:shop_app/cubit/categories/categories_cubit.dart';
 import 'package:shop_app/cubit/favorite/favorite_cubit.dart';
 import 'package:shop_app/cubit/product/products_cubit.dart';
 import 'package:shop_app/cubit/profile/profile_cubit.dart';
+import 'package:shop_app/cubit/search/search_cubit.dart';
 import 'package:shop_app/layout/home.dart';
 import 'package:shop_app/modules/login.dart';
 import 'package:shop_app/modules/onboarding.dart';
@@ -69,6 +70,9 @@ class MyApp extends StatelessWidget {
               BlocProvider(
                 create: (context) => ProfileCubit(DioConsumer(dio: Dio()))
                   ..getUserData(),
+              ),
+              BlocProvider(
+                create: (context) => SearchCubit(DioConsumer(dio: Dio()))
               ),
             ],
             child: MaterialApp(
