@@ -25,6 +25,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       body: BlocConsumer<ProductsCubit, ProductsState>(
         listener: (context, state) {},
         builder: (context, state) {
