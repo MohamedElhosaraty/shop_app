@@ -11,9 +11,12 @@ import 'package:shop_app/shared/components/navigatorto.dart';
 class SettingScreen extends StatelessWidget {
   SettingScreen({super.key});
 
-  TextEditingController emailController = TextEditingController();
-  TextEditingController nameController = TextEditingController();
-  TextEditingController phoneController = TextEditingController();
+ final TextEditingController emailController = TextEditingController();
+ final TextEditingController nameController = TextEditingController();
+ final TextEditingController phoneController = TextEditingController();
+
+  // File? image;
+  // final imagePicker = ImagePicker();
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +50,10 @@ class SettingScreen extends StatelessWidget {
                 return SingleChildScrollView(
                   child: Column(
                     children: [
+                      CircleAvatar(
+                        radius: 100,
+                        backgroundImage: NetworkImage(state.profileModel.data.image),
+                      ),
                       Padding(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 15, vertical: 15.0),
