@@ -11,9 +11,6 @@ import 'package:shop_app/shared/components/navigatorto.dart';
 class SettingScreen extends StatelessWidget {
   SettingScreen({super.key});
 
- final TextEditingController emailController = TextEditingController();
- final TextEditingController nameController = TextEditingController();
- final TextEditingController phoneController = TextEditingController();
 
   // File? image;
   // final imagePicker = ImagePicker();
@@ -31,133 +28,120 @@ class SettingScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: BlocConsumer<ProfileCubit, ProfileState>(
-        listener: (context, state) {
-          if(state is UpDateProfileFailureState){
-            showToast(message: state.errorMessage, state: ToastStates.ERROR);
-          }
-        },
+      body: BlocBuilder<ProfileCubit, ProfileState>(
+
         builder: (context, state) {
 
-              if (state is ProfileLoadingState) {
-                return const Center(child: CircularProgressIndicator(),);
-              }
-              if (state is ProfileSuccessState) {
-                nameController.text = state.profileModel.data.name;
-                emailController.text = state.profileModel.data.email;
-                phoneController.text = state.profileModel.data.phone;
+          final ProfileCubit profileCubit = ProfileCubit.get(context);
 
-                return SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      CircleAvatar(
-                        radius: 100,
-                        backgroundImage: NetworkImage(state.profileModel.data.image),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 15, vertical: 15.0),
-                        child: TextField(
-                          controller: nameController,
-                          decoration: InputDecoration(
-                              prefixIcon: const Icon(Icons.person),
-                              border: const OutlineInputBorder(),
-                              hintText: "Name",
-                              hintStyle: TextStyle(
-                                  fontSize: 18.sp,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'font',
-                                  color: Colors.black
-                              )
-                          ),
-
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 15, vertical: 15.0),
-                        child: TextField(
-                          controller: emailController,
-                          decoration: InputDecoration(
-                              prefixIcon: const Icon(Icons.email),
-                              border: const OutlineInputBorder(),
-                              hintText: "Email",
-                              hintStyle: TextStyle(
-                                  fontSize: 18.sp,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'font',
-                                  color: Colors.black
-                              )
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 15, vertical: 15.0),
-                        child: TextField(
-                          controller: phoneController,
-                          decoration: InputDecoration(
-                              prefixIcon: const Icon(Icons.phone_android),
-                              border: const OutlineInputBorder(),
-                              hintText: "Phone",
-                              hintStyle: TextStyle(
-                                  fontSize: 18.sp,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'font',
-                                  color: Colors.black
-                              )
-                          ),
-                        ),
-                      ),
-
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 15, vertical: 15.0),
-                        child: ContainerButton(style: TextStyle(
+         return state is ProfileLoadingState || state is  UpDateProfileLoadingState  ?
+                 const Center(child: CircularProgressIndicator(),) : SingleChildScrollView(
+            child: Column(
+              children: [
+                CircleAvatar(
+                  radius: 100,
+                  backgroundImage: NetworkImage(profileCubit.profileModel!.data.image),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 15, vertical: 15.0),
+                  child: TextField(
+                    controller: profileCubit.nameController,
+                    decoration: InputDecoration(
+                        prefixIcon: const Icon(Icons.person),
+                        border: const OutlineInputBorder(),
+                        hintText: "Name",
+                        hintStyle: TextStyle(
                             fontSize: 18.sp,
-                            color: Colors.white,
                             fontWeight: FontWeight.bold,
-                            fontFamily: 'font'
-                        ),
-                            text: "SIGNOUT", onPressed: () {
-                              CacheHelper.removeData(key: ApiKey.token).then((
-                                  value) {
-                                if (value) {
-                                  navigateAndFinish(context, LoginScreen());
-                                }
-                              });
-                            }),
-                      ),
+                            fontFamily: 'font',
+                            color: Colors.black
+                        )
+                    ),
 
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 15, vertical: 15.0),
-                        child: ContainerButton(style: TextStyle(
-                            fontSize: 18.sp,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'font'
-                        ),
-                            text: "UPDATE", onPressed: () {
-                              BlocProvider.of<ProfileCubit>(context)
-                                  .upDateProfile(
-                                  name: nameController.text,
-                                  email: emailController.text,
-                                  phone: phoneController.text
-                              );
-                              print(BlocProvider
-                                  .of<ProfileCubit>(context)
-                                  .upDateProfileModel);
-                            }),
-                      )
-                    ],
                   ),
-                );
-              }
-              if (state is ProfileFailureState) {
-                return Center(child: Text(state.errorMessage));
-              }
-              return const Center(child: Text("Mohamed"));
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 15, vertical: 15.0),
+                  child: TextField(
+                    controller: profileCubit.emailController,
+                    decoration: InputDecoration(
+                        prefixIcon: const Icon(Icons.email),
+                        border: const OutlineInputBorder(),
+                        hintText: "Email",
+                        hintStyle: TextStyle(
+                            fontSize: 18.sp,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'font',
+                            color: Colors.black
+                        )
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 15, vertical: 15.0),
+                  child: TextField(
+                    controller: profileCubit.phoneController,
+                    decoration: InputDecoration(
+                        prefixIcon: const Icon(Icons.phone_android),
+                        border: const OutlineInputBorder(),
+                        hintText: "Phone",
+                        hintStyle: TextStyle(
+                            fontSize: 18.sp,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'font',
+                            color: Colors.black
+                        )
+                    ),
+                  ),
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 15, vertical: 15.0),
+                  child: ContainerButton(style: TextStyle(
+                      fontSize: 18.sp,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'font'
+                  ),
+                      text: "SIGNOUT", onPressed: () {
+                        CacheHelper.removeData(key: ApiKey.token).then((
+                            value) {
+                          if (value) {
+                            navigateAndFinish(context, LoginScreen());
+                          }
+                        });
+                      }),
+                ),
+                state is UpDateProfileLoadingState ? CircularProgressIndicator() :
+
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 15, vertical: 15.0),
+                  child: ContainerButton(style: TextStyle(
+                      fontSize: 18.sp,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'font'
+                  ),
+                      text: "UPDATE", onPressed: () {
+                        BlocProvider.of<ProfileCubit>(context)
+                            .upDateProfile(
+                            name: profileCubit.nameController.text,
+                            email: profileCubit.emailController.text,
+                            phone: profileCubit.phoneController.text
+                        );
+                        print(BlocProvider
+                            .of<ProfileCubit>(context)
+                            .upDateProfileModel);
+                      }),
+                )
+              ],
+            ),
+          );
 
         },
       ),

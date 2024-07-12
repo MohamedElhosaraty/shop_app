@@ -21,21 +21,22 @@ final class BottomHomeFailureState extends ProductsState {
 }
 ///////////////////////////------------ Change Favorite
 
-// final class BottomChangeFavoriteState extends ProductsState {}
-//
-//
-// final class BottomChangeFavoriteSuccessState extends ProductsState {
-//
-//   final FavoriteModel favoriteModel;
-//
-//   BottomChangeFavoriteSuccessState({required this.favoriteModel});
-// }
-//
-// final class BottomFailureFavoriteState extends ProductsState {
-//
-//   final String errorMessage;
-//
-//   BottomFailureFavoriteState({required this.errorMessage});
-//
-// }
+final class BottomChangeFavoriteState extends ProductsState {}
 
+final class BottomLoadingFavoriteState extends ProductsState {}
+
+
+final class BottomChangeFavoriteSuccessState extends ProductsState {
+
+  final FavoriteModel favoriteModel;
+
+  BottomChangeFavoriteSuccessState({required this.favoriteModel});
+}
+
+final class BottomFailureFavoriteState extends ProductsState {
+
+  final String errorMessage;
+
+  BottomFailureFavoriteState({required this.errorMessage});
+
+}
