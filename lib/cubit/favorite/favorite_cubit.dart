@@ -19,40 +19,40 @@ class FavoriteCubit extends Cubit<FavoriteState> {
 
   GetFavouriteModel? getFavouriteModel;
 
-  void changeFavorites (int productId) async
-  {
-    try {
-
-
-      favorite[productId] != favorite[productId];
-      emit(BottomChangeFavoriteState());
-
-      final response = await api.post(
-          isFormData:  true,
-          ApiKey.favorites,
-          data: {
-            "product_id" : productId ,
-          }
-      );
-
-      favoriteModel = FavoriteModel.fromJson(response);
-
-      if(favoriteModel!.status == false){
-        favorite[productId] != favorite[productId];
-      }
-
-
-      emit(BottomChangeFavoriteSuccessState(favoriteModel: favoriteModel!));
-    } on ServerException catch (e) {
-
-      favorite[productId] != favorite[productId];
-      emit(BottomFailureFavoriteState(errorMessage: e.errorModel.message));
-    }
-  }
+  // void changeFavorites (int productId) async
+  // {
+  //   try {
+  //
+  //
+  //     favorite[productId] != favorite[productId];
+  //     emit(BottomChangeFavoriteState());
+  //
+  //     final response = await api.post(
+  //         isFormData:  true,
+  //         ApiKey.favorites,
+  //         data: {
+  //           "product_id" : productId ,
+  //         }
+  //     );
+  //
+  //     favoriteModel = FavoriteModel.fromJson(response);
+  //
+  //     if(favoriteModel!.status == false){
+  //       favorite[productId] != favorite[productId];
+  //     }
+  //
+  //
+  //     emit(BottomChangeFavoriteSuccessState(favoriteModel: favoriteModel!));
+  //   } on ServerException catch (e) {
+  //
+  //     favorite[productId] != favorite[productId];
+  //     emit(BottomFailureFavoriteState(errorMessage: e.errorModel.message));
+  //   }
+  // }
 
   void getFavoriteData () async {
     try {
-      emit(BottomLoadingFavoriteState());
+      emit(BottomLoading2FavoriteState());
       final response = await api.get(ApiKey.favorites);
 
       getFavouriteModel = GetFavouriteModel.fromJson(response);

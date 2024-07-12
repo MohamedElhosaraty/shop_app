@@ -1,7 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shop_app/cubit/favorite/favorite_cubit.dart';
+import 'package:shop_app/cubit/product/products_cubit.dart';
 import 'package:shop_app/shared/components/textbest.dart';
 
 class FavouriteScreen extends StatelessWidget {
@@ -35,7 +38,7 @@ class FavouriteScreen extends StatelessWidget {
           }),
     body: BlocBuilder<FavoriteCubit, FavoriteState>(
       builder: (context, state) {
-        if (state is BottomLoadingFavoriteState) {
+        if (state is BottomLoading2FavoriteState) {
           return const Center(
             child: CircularProgressIndicator(),
           );
@@ -52,7 +55,7 @@ class FavouriteScreen extends StatelessWidget {
               builder: (context, index) {
                 return Card(
                   margin:
-                  const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                  const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -86,52 +89,55 @@ class FavouriteScreen extends StatelessWidget {
                       SizedBox(
                         height: 5.h,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            TextBest(
-                              text: state.getFavouriteModel.data.data[index].product.name,
-                            ),
-                            Row(
-                              children: [
-                                Text(
-                                  state.getFavouriteModel.data.data[index].product.price.toString(),
-                                  style: TextStyle(fontSize: 15.sp, color: Colors.blueAccent),
-                                ),
-                                SizedBox(
-                                  width: MediaQuery.of(context).size.width / 20,
-                                ),
-                                if (state.getFavouriteModel.data.data[index].product.discount != 0)
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              TextBest(
+                                text: state.getFavouriteModel.data.data[index].product.name,
+                              ),
+                              Row(
+                                children: [
                                   Text(
-                                    state.getFavouriteModel.data.data[index].product.oldPrice.round().toString(),
-                                    style: TextStyle(
-                                        fontSize: 15.sp,
-                                        color: Colors.grey,
-                                        decoration: TextDecoration.lineThrough),
+                                    state.getFavouriteModel.data.data[index].product.price.toString(),
+                                    style: TextStyle(fontSize: 15.sp, color: Colors.blueAccent),
                                   ),
-                                // const Spacer(),
-                                // IconButton(
-                                //   onPressed: () {
-                                //     FavoriteCubit.get(context).changeFavorites(state.getFavouriteModel.data.data[index].product.id);
-                                //   },
-                                //   icon:  CircleAvatar(
-                                //       radius: 25,
-                                //       backgroundColor:
-                                //       ProductsCubit.get(context).favorite[state.getFavouriteModel.data.data[index].product.id]?? false ?
-                                //       Colors.blueAccent:
-                                //       Colors.grey,
-                                //       child: Icon(Icons.favorite,
-                                //         size: 30,
-                                //         color:
-                                //         ProductsCubit.get(context).favorite[state.getFavouriteModel.data.data[index].product.id] ?? false ? Colors.red :
-                                //         Colors.white,)),
-                                // ),
-                              ],
-                            ),
-
-                          ],
+                                  SizedBox(
+                                    width: MediaQuery.of(context).size.width / 20,
+                                  ),
+                                  if (state.getFavouriteModel.data.data[index].product.discount != 0)
+                                    Text(
+                                      state.getFavouriteModel.data.data[index].product.oldPrice.round().toString(),
+                                      style: TextStyle(
+                                          fontSize: 15.sp,
+                                          color: Colors.grey,
+                                          decoration: TextDecoration.lineThrough),
+                                    ),
+                                  const Spacer(),
+                                  IconButton(
+                                    onPressed: () {
+                                      ProductsCubit.get(context).changeFavorites(state.getFavouriteModel.data.data[index].product.id);
+                        
+                                    },
+                                    icon:  CircleAvatar(
+                                        radius: 20,
+                                        backgroundColor:
+                                        ProductsCubit.get(context).favorite[state.getFavouriteModel.data.data[index].product.id]?? false ?
+                                        Colors.blueAccent:
+                                        Colors.grey,
+                                        child: Icon(Icons.favorite,
+                                          size: 25,
+                                          color:
+                                          ProductsCubit.get(context).favorite[state.getFavouriteModel.data.data[index].product.id] ?? false ? Colors.red :
+                                          Colors.white,)),
+                                  ),
+                                ],
+                              ),
+                        
+                            ],
+                          ),
                         ),
                       ),
 

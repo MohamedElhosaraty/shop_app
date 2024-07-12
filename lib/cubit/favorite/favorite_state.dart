@@ -20,7 +20,7 @@ final class BottomFailureFavoriteState extends FavoriteState {
 
 //------------------- getData Favorite ----------
 
-final class BottomLoadingFavoriteState extends FavoriteState {}
+final class BottomLoading2FavoriteState extends FavoriteState {}
 
 final class BottomSuccessFavoriteState extends FavoriteState {
 

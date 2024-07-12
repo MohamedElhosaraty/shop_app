@@ -8,20 +8,10 @@ import 'package:shop_app/cubit/product/products_cubit.dart';
 import 'package:shop_app/model/categories_model.dart';
 import 'package:shop_app/model/home_model.dart';
 
-class ProductsScreen extends StatefulWidget {
+class ProductsScreen extends StatelessWidget {
   const ProductsScreen({super.key});
 
-  @override
-  State<ProductsScreen> createState() => _ProductsScreenState();
-}
 
-class _ProductsScreenState extends State<ProductsScreen> {
-
-  @override
-  void initState() {
-    super.initState();
-    BlocProvider.of<ProductsCubit>(context).getHomeData();
-  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +19,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
       body: BlocConsumer<ProductsCubit, ProductsState>(
         listener: (context, state) {},
         builder: (context, state) {
-          if (state is BottomHomeLoadingState) {
+          if (state is BottomHomeLoadingState ) {
             return const Center(
               child: CircularProgressIndicator(),
             );
@@ -223,9 +213,10 @@ class BuildGridView extends StatelessWidget {
                           decoration: TextDecoration.lineThrough),
                     ),
                   const Spacer(),
+
                   IconButton(
                     onPressed: () {
-                      FavoriteCubit.get(context).changeFavorites(homeModel.id);
+                      ProductsCubit.get(context).changeFavorites(homeModel.id);
                     },
                     icon:  CircleAvatar(
                       radius: 20,

@@ -61,7 +61,7 @@ class MyApp extends StatelessWidget {
               ),
               BlocProvider(
                 create: (context) =>
-                FavoriteCubit(DioConsumer(dio: Dio()))..getFavoriteData(),
+                    FavoriteCubit(DioConsumer(dio: Dio()))..getFavoriteData(),
               ),
               BlocProvider(
                 create: (context) => CategoriesCubit(DioConsumer(dio: Dio()))
