@@ -2,9 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app/core/api/api_consumer.dart';
 import 'package:shop_app/core/api/end_Points.dart';
 import 'package:shop_app/core/errors/exception.dart';
-import 'package:shop_app/cubit/favorite/favorite_cubit.dart';
 import 'package:shop_app/model/favorite_model.dart';
-import 'package:shop_app/model/get_Favorite_Model.dart';
 import 'package:shop_app/model/home_model.dart';
 
 part 'products_state.dart';

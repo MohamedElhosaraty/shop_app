@@ -217,6 +217,7 @@ class BuildGridView extends StatelessWidget {
                   IconButton(
                     onPressed: () {
                       ProductsCubit.get(context).changeFavorites(homeModel.id);
+                        FavoriteCubit.get(context).getFavoriteData();
                     },
                     icon:  CircleAvatar(
                       radius: 20,
