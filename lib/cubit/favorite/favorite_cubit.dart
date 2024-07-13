@@ -4,7 +4,6 @@ import 'package:shop_app/core/api/end_Points.dart';
 import 'package:shop_app/core/errors/exception.dart';
 import 'package:shop_app/model/favorite_model.dart';
 import 'package:shop_app/model/get_Favorite_Model.dart';
-import 'package:shop_app/shared/components/navigatorto.dart';
 
 part 'favorite_state.dart';
 

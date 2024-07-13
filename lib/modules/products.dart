@@ -38,7 +38,7 @@ class ProductsScreen extends StatelessWidget {
 }
 
 class BuildProduct extends StatelessWidget {
-  BuildProduct({super.key, required this.homeModel});
+  const BuildProduct({super.key, required this.homeModel});
 
   final HomeModel homeModel;
 
@@ -241,7 +241,7 @@ class BuildGridView extends StatelessWidget {
 }
 
 class BuildCategoriesItem extends StatelessWidget {
-  BuildCategoriesItem({super.key, required this.categoriesModel});
+  const BuildCategoriesItem({super.key, required this.categoriesModel});
 
   final Datum categoriesModel;
 
