@@ -1,4 +1,6 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -33,7 +35,10 @@ void main() async {
   }
 
 
-  runApp(MyApp(onBoarding: widget,));
+  runApp(DevicePreview(
+      enabled: !kReleaseMode,
+      builder: (context) =>
+      MyApp(onBoarding: widget,)),);
 }
 
 class MyApp extends StatelessWidget {
@@ -76,6 +81,8 @@ class MyApp extends StatelessWidget {
               ),
             ],
             child: MaterialApp(
+              locale: DevicePreview.locale(context),
+              builder: DevicePreview.appBuilder,
               debugShowCheckedModeBanner: false,
               title: 'Shop App',
               theme: ThemeData(

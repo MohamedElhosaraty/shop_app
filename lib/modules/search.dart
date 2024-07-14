@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -77,11 +78,13 @@ class SearchScreen extends StatelessWidget {
                                          crossAxisAlignment :CrossAxisAlignment.start,
                                          mainAxisAlignment :MainAxisAlignment.center,
                                         children: [
-                                          Text(cubit.name,style: TextStyle(
-                                            fontSize: 15.sp,
-                                            color: Colors.black,
-                                            fontFamily: 'font',
-                                          ),),
+                                          Expanded(
+                                            child: Text(cubit.name,style: TextStyle(
+                                              fontSize: 15.sp,
+                                              color: Colors.black,
+                                              fontFamily: 'font',
+                                            ),),
+                                          ),
                                           SizedBox(
                                             height: 10.h,
                                           ),

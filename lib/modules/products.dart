@@ -134,7 +134,7 @@ class BuildProduct extends StatelessWidget {
             shrinkWrap: true,
             crossAxisSpacing: 1.0,
             mainAxisSpacing: 1.0,
-            childAspectRatio: 1 / 1.7,
+            childAspectRatio: 1 / 1.5.h,
             children: List.generate(
                 homeModel.data.products.length,
                 (index) => BuildGridView(
